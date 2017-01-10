@@ -48,6 +48,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -76,11 +84,19 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http.OData, Version=5.3.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.3.1\lib\net45\System.Web.Http.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -147,7 +163,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -183,6 +198,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AccessCounterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Entities\access_counter_db.cs" />
@@ -224,22 +240,22 @@
     <Compile Include="Entities\coupon_db.cs" />
     <Compile Include="Entities\coupon_detail_db.cs" />
     <Compile Include="Entities\dealer_db.cs" />
-    <Compile Include="Entities\dealer_url_db.cs" />
+    <Compile Include="Entities\dbo\dealer_url_db.cs" />
     <Compile Include="Entities\download_item_db.cs" />
     <Compile Include="Entities\download_order_db.cs" />
-    <Compile Include="Entities\EbiDB.cs" />
+    <Compile Include="DbContext\EbiDB.cs" />
     <Compile Include="Entities\ebija_download.cs" />
     <Compile Include="Entities\ebi_coupon_count_db.cs" />
     <Compile Include="Entities\ebi_coupon_db.cs" />
     <Compile Include="Entities\ebi_coupon_purpose_db.cs" />
     <Compile Include="Entities\ebook_format_tbl.cs" />
-    <Compile Include="Entities\error_email_db.cs" />
+    <Compile Include="Entities\dbo\error_email_db.cs" />
     <Compile Include="Entities\faq_access.cs" />
     <Compile Include="Entities\faq_access_summerize.cs" />
     <Compile Include="Entities\faq_list.cs" />
     <Compile Include="Entities\faq_result.cs" />
     <Compile Include="Entities\genre_db.cs" />
-    <Compile Include="Entities\genre_db_20100316BK.cs" />
+    <Compile Include="Entities\dbo\genre_db_20100316BK.cs" />
     <Compile Include="Entities\giftPic_cate_db.cs" />
     <Compile Include="Entities\giftPic_db.cs" />
     <Compile Include="Entities\gift_db.cs" />
@@ -250,14 +266,14 @@
     <Compile Include="Entities\investigate_item_db.cs" />
     <Compile Include="Entities\kanrititle_db.cs" />
     <Compile Include="Entities\mailmagazine_db.cs" />
-    <Compile Include="Entities\mail_dealer_db.cs" />
-    <Compile Include="Entities\mail_genre_db.cs" />
-    <Compile Include="Entities\mail_history_db.cs" />
-    <Compile Include="Entities\mail_magazine_db.cs" />
-    <Compile Include="Entities\mail_manager_user_db.cs" />
-    <Compile Include="Entities\mail_settings_db.cs" />
-    <Compile Include="Entities\mail_status_db.cs" />
-    <Compile Include="Entities\mail_testto_db.cs" />
+    <Compile Include="Entities\dbo\mail_dealer_db.cs" />
+    <Compile Include="Entities\dbo\mail_genre_db.cs" />
+    <Compile Include="Entities\dbo\mail_history_db.cs" />
+    <Compile Include="Entities\dbo\mail_magazine_db.cs" />
+    <Compile Include="Entities\dbo\mail_manager_user_db.cs" />
+    <Compile Include="Entities\dbo\mail_settings_db.cs" />
+    <Compile Include="Entities\dbo\mail_status_db.cs" />
+    <Compile Include="Entities\dbo\mail_testto_db.cs" />
     <Compile Include="Entities\marathon_apply_db.cs" />
     <Compile Include="Entities\marathon_book_db.cs" />
     <Compile Include="Entities\marathon_db.cs" />
@@ -324,7 +340,7 @@
     <Compile Include="Entities\receipt_option_db.cs" />
     <Compile Include="Entities\receipt_order_db.cs" />
     <Compile Include="Entities\recommend_counter_db.cs" />
-    <Compile Include="Entities\replace_word_db.cs" />
+    <Compile Include="Entities\dbo\replace_word_db.cs" />
     <Compile Include="Entities\review_blacklist_history_tbl.cs" />
     <Compile Include="Entities\review_data_tbl.cs" />
     <Compile Include="Entities\review_favorite_tbl.cs" />
@@ -393,7 +409,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccessCount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\EbiRepository.cs" />
+    <Compile Include="Repositories\IEbiRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

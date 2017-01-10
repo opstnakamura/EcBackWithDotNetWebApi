@@ -1,9 +1,10 @@
-namespace EcBackWithDotNetWebApi.Entities
+namespace EcBackWithDotNetWebApi.DbContest
 {
     using System;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using EcBackWithDotNetWebApi.Entities;
 
     public partial class EbiDB : DbContext
     {
